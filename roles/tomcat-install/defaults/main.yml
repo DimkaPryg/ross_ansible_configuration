@@ -5,3 +5,5 @@ tomcat_temp_download_path: /tmp/tomcat
 tomcat_downloadURL: https://archive.apache.org/dist
 tomcat_install_path: /opt/
 tomcat_version: 10.0.14
+
+tomcat_template_server: "server.xml.j2"
