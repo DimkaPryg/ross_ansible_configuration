@@ -31,26 +31,18 @@
     dest: '{{ tomcat_temp_download_path }}'
     timeout: 180
 
-- name: apache-tomcat-{{ tomcat_version }}.tar.gz is transfered to the disconnected remote
-  copy:
-    src: "{{ tomcat_temp_download_path }}/apache-tomcat-{{ tomcat_version }}.tar.gz"
-    dest: "{{ tomcat_temp_download_path }}"
-  when: tomcat_remote_is_disconnected
-
 - name: Unarchive apache-tomcat-{{ tomcat_version }}.tar.gz at {{ tomcat_install_path }}
   unarchive:
     src: "{{ tomcat_temp_download_path }}/apache-tomcat-{{ tomcat_version }}.tar.gz"
     dest: "{{ tomcat_install_path }}"
     remote_src: True
-    owner: "{% if tomcat_permissions_production %}root{% else %}{{ tomcat_user }}{% endif %}"
+    owner: "{{ tomcat_user }}"
     group: "{{ tomcat_group }}"
     creates: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }}"
   register: tomcat_installed
-  when: not is_installed.stat.exists
 
 - name: Clean up temporary files
   file:
     path: '{{ tomcat_temp_download_path }}'
     state: absent
   changed_when: False
-  when: not is_installed.stat.exists
