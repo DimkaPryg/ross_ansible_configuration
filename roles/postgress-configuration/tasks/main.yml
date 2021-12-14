@@ -30,6 +30,7 @@
     state: present
     update_cache: yes
   become: true
+  notify: enable automatic start
 
 - name: Enable PostgreSQL {{pg_version}}
   service:
@@ -72,6 +73,4 @@
     create: true
   become: yes
   become_user: postgres
-  notify: 
-    - restart postgres
-    - enable automatic start
+  notify: restart postgres
