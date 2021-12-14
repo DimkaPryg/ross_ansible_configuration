@@ -1,0 +1,6 @@
+---
+tomcat_group: tomcat
+tomcat_user: tomcat
+tomcat_temp_download_path: /tmp/tomcat
+tomcat_downloadURL: https://archive.apache.org/dist
+tomcat_install_path: /opt
