@@ -40,9 +40,11 @@
     group: "{{ tomcat_group }}"
     creates: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }}"
   register: tomcat_installed
+  become: yes
 
 - name: Clean up temporary files
   file:
     path: '{{ tomcat_temp_download_path }}'
     state: absent
   changed_when: False
+  become: yes
