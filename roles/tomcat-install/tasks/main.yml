@@ -3,12 +3,14 @@
   package:
     name: openjdk
     state: latest
+    become: yes
 
 - name: Create group {{ tomcat_group }}
   group:
     name: "{{ tomcat_group }}"
     gid: "{{ tomcat_group_gid | default(omit) }}"
     state: present
+    become: yes
 
 - name: Create user {{ tomcat_user }}
   user:
@@ -16,6 +18,7 @@
     group: "{{ tomcat_group }}"
     # uid: "{{ tomcat_user_uid | default(omit) }}"
     state: present
+    become: yes
 
 - name: Create temp directory
   file:

@@ -2,9 +2,9 @@
 - name: Ross server
   hosts: ross
   roles:
-    - nginx-install
-    - postgres-configuration
-    - ftp-install
+    # - nginx-install
+    # - postgres-configuration
+    # - ftp-install
     - tomcat-install
 
   
