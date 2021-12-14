@@ -1,7 +1,7 @@
 ---
 - name: Install Java
   package:
-    name: openjdk
+    name: java-11-openjdk-devel.x86_64
     state: latest
   become: yes
 
