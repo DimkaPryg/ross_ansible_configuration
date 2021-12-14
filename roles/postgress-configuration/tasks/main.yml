@@ -1,7 +1,7 @@
 ---
 - name: Disable builtin postgresql module
   shell: >
-    dnf -y module disable postgresql
+    dnf -qy module disable postgresql
   args:
     executable: /bin/bash
   register: disable_builtin_postgres
@@ -9,6 +9,7 @@
   failed_when: disable_builtin_postgres.rc != 0
   ignore_errors: yes
   become: yes
+  when: os in ['RedHat8','CentOS8']
 
 - name: Install require python package
   package:
