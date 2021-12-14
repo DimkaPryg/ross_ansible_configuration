@@ -32,10 +32,10 @@
   become: true
   notify: enable automatic start
 
-  - name: Initialize the database
-    shell: >
-      /usr/pgsql-14/bin/postgresql-14-setup initdb
-    become: yes
+- name: Initialize the database
+  shell: >
+    /usr/pgsql-14/bin/postgresql-14-setup initdb
+  become: yes
 
 - name: "Create a new database {{ db_name }}"
   postgresql_db:
