@@ -24,14 +24,6 @@
   file:
     path: '{{ tomcat_temp_download_path }}'
     state: directory
-  delegate_to: "{{ item }}"
-  loop:
-    - localhost
-    - "{{ inventory_hostname }}"
-  changed_when: False
-  when: >
-    not is_installed.stat.exists and
-    (( item == inventory_hostname ) or tomcat_remote_is_disconnected )
 
 - name: Download apache-tomcat-{{ tomcat_version }}
   get_url:
