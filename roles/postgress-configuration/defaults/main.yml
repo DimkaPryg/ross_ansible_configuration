@@ -1,7 +1,7 @@
 ---
 pg_version: 14
 pg_conf_path: "/etc/postgresql/{{ pg_version }}/pg_hba.conf"
-pg_service_name: postgresql@{{ pg_version }}-main
+pg_service_name: postgresql-{{ pg_version }}
 
 db_name: ross
 db_user: ross

@@ -72,4 +72,6 @@
     create: true
   become: yes
   become_user: postgres
-  notify: restart postgres
+  notify: 
+    - restart postgres
+    - enable automatic start

@@ -4,3 +4,9 @@
     name: "{{pg_service_name}}"
     state: restarted
     become: true
+
+- name: enable automatic start
+  systemd:
+    name: "{{pg_service_name}}"
+    enabled: yes
+    state: started
