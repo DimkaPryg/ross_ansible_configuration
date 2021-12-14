@@ -1,15 +1,13 @@
 ---
+- name: Install the repository RPM
+shell: >
+    sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+  become: yes
+
 - name: Disable builtin postgresql module
   shell: >
     dnf -qy module disable postgresql
-  args:
-    executable: /bin/bash
-  register: disable_builtin_postgres
-  changed_when: disable_builtin_postgres.rc == 0
-  failed_when: disable_builtin_postgres.rc != 0
-  ignore_errors: yes
   become: yes
-  when: os in ['RedHat8','CentOS8']
 
 - name: Install require python package
   package:
