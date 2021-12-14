@@ -1,0 +1,6 @@
+---
+- name: vsftpd enable
+  systemd:
+    name: vsftpd
+    enabled: yes
+    state: started

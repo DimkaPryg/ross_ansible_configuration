@@ -6,5 +6,5 @@
     update_cache: yes
   become: true
   notify:
-    - Ngingx enable
+    - vsftpd enable
   
