@@ -1,0 +1,10 @@
+---
+- name: Install vsftpd
+  package:
+    name: vsftpd
+    state: latest
+    update_cache: yes
+  become: true
+  notify:
+    - Ngingx enable
+  

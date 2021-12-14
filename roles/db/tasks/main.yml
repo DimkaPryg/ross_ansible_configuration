@@ -1,0 +1,54 @@
+---
+- name: Install PostgreSQL {{pg_version}}
+  package:
+    name:
+      - acl
+      - python3-pycurl
+      - python3-psycopg2
+      - postgresql-{{pg_version}}
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Enable PostgreSQL {{pg_version}}
+  service:
+    name: "{{pg_service_name}}"
+    state: started
+    enabled: yes
+
+- name: "Create a new database {{ db_name }}"
+  postgresql_db:
+    name: "{{ db_name }}"
+    state: present
+  become: yes
+  become_user: postgres
+
+- name: "Create a new user {{ db_user }}"
+  postgresql_user:
+    state: present
+    name: "{{ db_user }}"
+    password: "{{ db_password }}"
+  become: yes
+  become_user: postgres
+
+- name: "Grant {{ db_user }} access to the {{ db_name }}"
+  postgresql_privs:
+    type: database
+    database: "{{ db_name }}"
+    roles: "{{ db_user }}"
+    grant_option: no
+    privs: all
+  become: yes
+  become_user: postgres
+
+- name: "Allow connection"
+  postgresql_pg_hba:
+    dest: "{{ pg_conf_path }}"
+    contype: host
+    databases: all
+    method: md5
+    users: harry
+    create: true
+  become: yes
+  become_user: postgres
+  notify: restart postgres

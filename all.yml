@@ -1,0 +1,19 @@
+---
+# - name: DataBase server
+#   hosts: db
+#   roles:
+#     - db
+
+# - name: Web server
+#   hosts: web
+#   roles:
+#     - nginx-install
+
+- name: Ross server
+  hosts: ross
+  roles:
+    - nginx-install
+    - db
+    - ftp-install
+
+  
