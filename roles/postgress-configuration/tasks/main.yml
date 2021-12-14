@@ -32,12 +32,6 @@
   become: true
   notify: enable automatic start
 
-- name: Enable PostgreSQL {{pg_version}}
-  service:
-    name: "{{pg_service_name}}"
-    state: started
-    enabled: yes
-
 - name: "Create a new database {{ db_name }}"
   postgresql_db:
     name: "{{ db_name }}"
