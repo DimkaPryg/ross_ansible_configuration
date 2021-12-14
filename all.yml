@@ -2,7 +2,7 @@
 - name: Ross server
   hosts: ross
   roles:
-    - nginx-install
+    - nginx-remove
     - postgress-configuration
     - ftp-install
 
