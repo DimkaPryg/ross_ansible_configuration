@@ -23,9 +23,7 @@
     name:
       - glibc-common
       - ca-certificates
-      - postgresql{{ pg_version }}
-      - postgresql{{ pg_version }}-server
-      - postgresql{{ pg_version }}-contrib
+      - timescaledb-2-postgresql-{{ pg_version }}
       - sslutils_{{ pg_version }}
     state: present
     update_cache: yes
@@ -34,14 +32,14 @@
 
 - name: Initialize the database
   shell: >
-    /usr/pgsql-14/bin/postgresql-14-setup initdb
+    /usr/pgsql-14/bin/postgresql-{{ pg_version }}-setup initdb
   become: yes
   ignore_errors: yes
 
 # ToDo почему то не работает через модуль хз =(
 - name: Enable automatic start
   shell: >
-    systemctl enable postgresql-14
+    systemctl enable postgresql-{{ pg_version }}
   become: yes
   ignore_errors: yes
 

@@ -5,6 +5,7 @@
     # - nginx-install
     # - postgres-configuration
     # - ftp-install
-    - tomcat-install
+    # - tomcat-install
+    - postres-remove
 
   
